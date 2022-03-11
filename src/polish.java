@@ -12,13 +12,13 @@ public class polish {
         for (int i = 0; i < n; i++) {// заполняем массив
             array.add(scanner.next());
         }
-        long time = System.nanoTime();
+        float time = System.nanoTime();
 
         while (array.size() != 1) {
             for (int i = 0; i < array.size(); i++) {
                 switch (array.get(i)) {
                     case "+" -> {
-                        result = Integer.parseInt(array.get(i - 1)) + Integer.parseInt(array.get(i - 2));
+                        result = Integer.parseInt(array.get(i - 2)) + Integer.parseInt(array.get(i - 1));
                         array.add(i, String.valueOf(result));
                         array.remove(i + 1);
                         array.remove(i - 1);
@@ -26,18 +26,20 @@ public class polish {
                         i -= 2;
                     }
                     case "-" -> {
-                        result = Integer.parseInt(array.get(i - 1)) - Integer.parseInt(array.get(i - 2));
+                        result = Integer.parseInt(array.get(i - 2)) - Integer.parseInt(array.get(i - 1));
                         array.add(i, String.valueOf(result));
                         array.remove(i + 1);
                         array.remove(i - 1);
                         array.remove(i - 2);
+                        i -= 2;
                     }
                     case "*" -> {
-                        result = Integer.parseInt(array.get(i - 1)) * Integer.parseInt(array.get(i - 2));
+                        result = Integer.parseInt(array.get(i - 2)) * Integer.parseInt(array.get(i - 1));
                         array.add(i, String.valueOf(result));
                         array.remove(i + 1);
                         array.remove(i - 1);
                         array.remove(i - 2);
+                        i -= 2;
                     }
                 }
             }
