@@ -7,8 +7,6 @@ public class polish {
         Scanner scanner = new Scanner(System.in);//Этим будет считывать
         int n = scanner.nextInt();// это читаем n
         ArrayList<String> array = new ArrayList<>(n);//тут бедем хранить все данные
-        String firstcmd;
-        Boolean findFirstCmd = false;
         int result;
 
         for (int i = 0; i < n; i++) {// заполняем массив
@@ -19,40 +17,28 @@ public class polish {
         while (array.size() != 1) {
             for (int i = 0; i < array.size(); i++) {
                 switch (array.get(i)) {
-                    case "+":
-                        if (!findFirstCmd) {
-                            firstcmd = "+";
-                            findFirstCmd = true;
-                        }
+                    case "+" -> {
                         result = Integer.parseInt(array.get(i - 1)) + Integer.parseInt(array.get(i - 2));
                         array.add(i, String.valueOf(result));
                         array.remove(i + 1);
                         array.remove(i - 1);
                         array.remove(i - 2);
-
-                        break;
-                    case "-":
-                        if (!findFirstCmd) {
-                            firstcmd = "-";
-                            findFirstCmd = true;
-                        }
+                        i -= 2;
+                    }
+                    case "-" -> {
                         result = Integer.parseInt(array.get(i - 1)) - Integer.parseInt(array.get(i - 2));
                         array.add(i, String.valueOf(result));
                         array.remove(i + 1);
                         array.remove(i - 1);
                         array.remove(i - 2);
-                        break;
-                    case "*":
-                        if (!findFirstCmd) {
-                            firstcmd = "*";
-                            findFirstCmd = true;
-                        }
+                    }
+                    case "*" -> {
                         result = Integer.parseInt(array.get(i - 1)) * Integer.parseInt(array.get(i - 2));
                         array.add(i, String.valueOf(result));
                         array.remove(i + 1);
                         array.remove(i - 1);
                         array.remove(i - 2);
-                        break;
+                    }
                 }
             }
         }
@@ -60,6 +46,5 @@ public class polish {
         System.out.println(array.get(0));
         time = (System.nanoTime() - time)/1000000;
         System.out.println(time + "ms");
-
     }
 }
